@@ -103,7 +103,7 @@
         "mode": "safeguard"
       },
       "sandbox": {
-        "mode": "non-main"
+        "mode": "all"
       },
       "maxConcurrent": 4,
       "subagents": {
@@ -115,42 +115,42 @@
         "id": "orchestrator",
         "model": "local/qwen2.5:14b",
         "sandbox": {
-          "mode": "non-main"
+          "mode": "all"
         }
       },
       {
         "id": "outreach",
         "model": "local/mistral-small:22b",
         "sandbox": {
-          "mode": "non-main"
+          "mode": "all"
         }
       },
       {
         "id": "researcher",
         "model": "local/qwen2.5:14b",
         "sandbox": {
-          "mode": "non-main"
+          "mode": "all"
         }
       },
       {
         "id": "analyst",
         "model": "local/qwen2.5:14b",
         "sandbox": {
-          "mode": "non-main"
+          "mode": "all"
         }
       },
       {
         "id": "content",
         "model": "local/mistral-small:22b",
         "sandbox": {
-          "mode": "non-main"
+          "mode": "all"
         }
       },
       {
         "id": "social",
         "model": "local/qwen2.5:14b",
         "sandbox": {
-          "mode": "non-main"
+          "mode": "all"
         }
       }
     ]
@@ -209,7 +209,9 @@
       "nodes",
       "canvas",
       "llm_task",
-      "lobster"
+      "lobster",
+      "group:web",
+      "browser"
     ]
   },
   "approvals": {
