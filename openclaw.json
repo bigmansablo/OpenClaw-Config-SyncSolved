@@ -211,6 +211,8 @@
       "llm_task",
       "lobster",
       "group:web",
+      "web_search",
+      "web_fetch",
       "browser"
     ]
   },
