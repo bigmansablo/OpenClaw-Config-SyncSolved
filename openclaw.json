@@ -1,0 +1,233 @@
+{
+  "meta": {
+    "lastTouchedVersion": "2026.2.9",
+    "lastTouchedAt": "2026-02-13T01:56:55.418Z"
+  },
+  "wizard": {
+    "lastRunAt": "2026-02-13T01:56:55.405Z",
+    "lastRunVersion": "2026.2.9",
+    "lastRunCommand": "configure",
+    "lastRunMode": "local"
+  },
+  "models": {
+    "providers": {
+      "local": {
+        "baseUrl": "http://127.0.0.1:11434",
+        "api": "openai-responses",
+        "apiKey": "ollama",
+        "models": [
+          {
+            "id": "qwen2.5:14b",
+            "name": "Qwen 2.5 14B",
+            "contextWindow": 32768,
+            "maxTokens": 4096
+          },
+          {
+            "id": "mistral-small:22b",
+            "name": "Mistral Small 22B",
+            "contextWindow": 32768,
+            "maxTokens": 4096
+          }
+        ]
+      },
+      "gemini": {
+        "baseUrl": "https://generativelanguage.googleapis.com",
+        "models": [
+          {
+            "id": "gemini-1.5-pro-latest",
+            "name": "gemini-1.5-pro",
+            "contextWindow": 2000000,
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "maxTokens": 8192
+          },
+          {
+            "id": "gemini-1.5-flash-latest",
+            "name": "gemini-1.5-flash",
+            "contextWindow": 1000000,
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "maxTokens": 8192
+          }
+        ]
+      },
+      "openrouter": {
+        "baseUrl": "https://openrouter.ai/api/v1",
+        "apiKey": "${OPENROUTER_API_KEY}",
+        "models": [
+          {
+            "id": "google/gemini-2.0-flash-exp:free",
+            "name": "gemini-2.0-flash-free",
+            "contextWindow": 1000000,
+            "cost": {
+              "input": 0,
+              "output": 0
+            }
+          },
+          {
+            "id": "google/gemini-2.0-pro-exp-02-05:free",
+            "name": "gemini-2.0-pro-free",
+            "contextWindow": 1000000,
+            "cost": {
+              "input": 0,
+              "output": 0
+            }
+          }
+        ]
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "local/qwen2.5:14b"
+      },
+      "workspace": "/root/.openclaw/workspace",
+      "compaction": {
+        "mode": "safeguard"
+      },
+      "sandbox": {
+        "mode": "non-main"
+      },
+      "maxConcurrent": 4,
+      "subagents": {
+        "maxConcurrent": 8
+      }
+    },
+    "list": [
+      {
+        "id": "orchestrator",
+        "model": "local/qwen2.5:14b",
+        "sandbox": {
+          "mode": "non-main"
+        }
+      },
+      {
+        "id": "outreach",
+        "model": "local/mistral-small:22b",
+        "sandbox": {
+          "mode": "non-main"
+        }
+      },
+      {
+        "id": "researcher",
+        "model": "local/qwen2.5:14b",
+        "sandbox": {
+          "mode": "non-main"
+        }
+      },
+      {
+        "id": "analyst",
+        "model": "local/qwen2.5:14b",
+        "sandbox": {
+          "mode": "non-main"
+        }
+      },
+      {
+        "id": "content",
+        "model": "local/mistral-small:22b",
+        "sandbox": {
+          "mode": "non-main"
+        }
+      },
+      {
+        "id": "social",
+        "model": "local/qwen2.5:14b",
+        "sandbox": {
+          "mode": "non-main"
+        }
+      }
+    ]
+  },
+  "messages": {
+    "ackReactionScope": "group-mentions"
+  },
+  "commands": {
+    "native": "auto",
+    "nativeSkills": "auto"
+  },
+  "gateway": {
+    "port": 18789,
+    "mode": "local",
+    "bind": "loopback",
+    "auth": {
+      "mode": "token",
+      "token": "52bb43afaea0149f19a6f494e6194957642860efb6d13700"
+    },
+    "tailscale": {
+      "mode": "off",
+      "resetOnExit": false
+    },
+    "remote": {
+      "token": "52bb43afaea0149f19a6f494e6194957642860efb6d13700"
+    }
+  },
+  "skills": {
+    "install": {
+      "nodeManager": "npm"
+    }
+  },
+  "tools": {
+    "allow": [
+      "read",
+      "write",
+      "edit",
+      "apply_patch",
+      "exec",
+      "process",
+      "web_search",
+      "web_fetch",
+      "memory_search",
+      "memory_get",
+      "sessions_list",
+      "sessions_history",
+      "sessions_send",
+      "sessions_spawn",
+      "session_status",
+      "message",
+      "cron",
+      "gateway",
+      "agents_list"
+    ],
+    "deny": [
+      "nodes",
+      "canvas",
+      "llm_task",
+      "lobster"
+    ]
+  },
+  "approvals": {
+    "exec": {
+      "enabled": true
+    }
+  },
+  "plugins": {
+    "entries": {
+      "telegram": {
+        "enabled": true
+      }
+    }
+  },
+  "channels": {
+    "telegram": {
+      "enabled": true,
+      "botToken": "8558481996:AAHx_7JBmOBAgqO5k-Rb33dIXonJXVpn4Pk"
+    }
+  }
+}
